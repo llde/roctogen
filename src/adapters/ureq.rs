@@ -1,6 +1,6 @@
 use http::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, USER_AGENT};
 
-use ureq::{Request, Response};
+use ureq::{Request, Response, AgentBuilder,RedirectAuthHeaders};
 
 use log::debug;
 
