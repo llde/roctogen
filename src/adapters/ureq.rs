@@ -81,7 +81,8 @@ where
 impl GitHubRequestBuilder<Value> for RequestWithBody
 {
     fn build(req: GitHubRequest<Value>, auth: &Auth) -> Result<Self, AdapterError> {
-        let mut builder = ureq::request(req.method, &req.uri);
+        let agent = AgentBuilder::new().set_redirect_auth_headers(RedirectAuthHeaders::SameHost).build();
+        let mut builder = agent.request(req.method, &req.uri);
 
         builder = builder
             .set(ACCEPT.as_str(), "application/vnd.github.v3+json")
